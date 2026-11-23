@@ -1,0 +1,1793 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winston Hansel's Portfolio</title>
+    <meta name="description" content="Personal portfolio of Winston Hansel. Creative design and technology.">
+    <!-- Favicon (Square padded #ececec badge + cache-busted so dark & light browser tabs render it clearly) -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico?v=20261123q">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico?v=20261123q">
+    <link rel="icon" type="image/png" sizes="64x64" href="assets/image/favicon-64.png?v=20261123q">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/image/favicon-32.png?v=20261123q">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/image/apple-touch-icon.png?v=20261123q">
+    <!-- Adobe Fonts / Typekit: Gladly Mailed (Saved for accent design, not applied yet) -->
+    <link rel="stylesheet" href="https://use.typekit.net/lfp5age.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css?v=20261123z">
+</head>
+
+<body>
+    <!-- Fullscreen Envelope Opening Loading Screen -->
+    <div class="letter-loader" id="letterLoader">
+        <div class="envelope-scene">
+            <div class="envelope-container" id="envelopeContainer">
+                <!-- 1. Background / Back of Envelope -->
+                <img src="assets/image/bg-letter.webp" alt="Envelope Back" class="letter-layer bg-letter">
+
+                <!-- 2. Inside Sheet of Paper (#dddddd) that slides out -->
+                <div class="letter-paper" id="letterPaper"></div>
+
+                <!-- 3. Front Pocket of Envelope -->
+                <img src="assets/image/body-letter.webp" alt="Envelope Body" class="letter-layer body-letter">
+
+                <!-- 4. Top Flap of Envelope (animates open upwards) -->
+                <div class="head-letter-wrapper" id="headLetterWrapper">
+                    <div class="flap-front">
+                        <img src="assets/image/head-letter.webp" alt="Envelope Flap" class="head-letter-img">
+                    </div>
+                    <div class="flap-back">
+                        <img src="assets/image/head-letter.webp" alt="Envelope Flap Inside"
+                            class="head-letter-img head-letter-back">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Indicator -->
+            <div class="loader-indicator" id="loaderIndicator">
+                <span class="loader-title">WINSTON HANSEL</span>
+                <div class="loader-bar-wrap">
+                    <div class="loader-bar-fill" id="loaderBarFill"></div>
+                </div>
+                <div class="loader-status">
+                    <span class="loader-state">OPENING PORTFOLIO</span>
+                    <span class="loader-percentage" id="loaderPercentage">0%</span>
+                </div>
+                <span class="loader-skip-hint" id="loaderSkipHint">click anywhere to skip</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Navigation Bar (Muncul di tengah atas saat scroll, lalu tetap menempel di atas) -->
+    <header class="header-container">
+        <a href="#home" class="header-logo" id="headerLogo" aria-label="Wins. Home">
+            <img src="assets/image/logo-wins.webp" alt="Wins. Logo" class="header-logo-img">
+        </a>
+        <nav class="navbar" id="navbar" aria-label="Main Navigation">
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#project" class="nav-link">Project</a></li>
+                <li class="nav-item"><a href="#work-detail" class="nav-link">Work Details</a></li>
+                <li class="nav-item"><a href="#mail" class="nav-link">Mail</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+        <button type="button" class="header-sound-btn" id="soundMuteBtn" aria-label="Mute sound effects"
+            aria-pressed="false" title="Toggle sound effects">
+            <svg class="sound-icon sound-icon-on" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                aria-hidden="true">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+            </svg>
+            <svg class="sound-icon sound-icon-off" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                aria-hidden="true">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                <line x1="23" y1="9" x2="17" y2="15" />
+                <line x1="17" y1="9" x2="23" y2="15" />
+            </svg>
+            <span class="sound-btn-label" id="soundMuteLabel">Sound On</span>
+        </button>
+    </header>
+
+    <main>
+        <!-- Section Home (Interactive Landing Page) -->
+        <section id="home">
+            <div class="viewport-scene" id="scene">
+                <!-- Initial Scroll Prompt -->
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <span class="scroll-text">scroll to start</span>
+                </div>
+
+                <!-- Persistent Scroll to Interact Indicator (Bottom-Left) -->
+                <div class="scroll-bottom-indicator" id="scrollBottomIndicator" role="button" tabindex="0"
+                    title="Scroll to interact" aria-label="Scroll to interact">
+                    <div class="scroll-mouse-icon" aria-hidden="true">
+                        <span class="scroll-wheel-dot"></span>
+                    </div>
+                    <span class="scroll-bottom-text">Scroll to interact</span>
+                </div>
+
+                <!-- Center Stage: Signature & Layered Photo -->
+                <div class="stage-center">
+                    <!-- Handwriting SVG with Stroke-Dash Reveal Mask -->
+                    <div class="signature-wrapper" id="signatureWrapper">
+                        <svg class="signature-svg" viewBox="0 0 1044 508" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <mask id="signature-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="1044"
+                                    height="508">
+                                    <!-- Animated writing strokes aligned to exact pixel coordinates of winston-hansel.png -->
+                                    <g id="maskStrokesGroup">
+                                        <!-- "Winston" -->
+                                        <!-- 1. W -->
+                                        <path class="draw-stroke"
+                                            d="M 12 130 C 16 192 32 252 46 252 C 66 252 98 135 120 120 C 142 128 156 226 168 228 C 194 224 232 68 286 24 C 328 8 372 18 388 48" />
+                                        <!-- 2. i stem -->
+                                        <path class="draw-stroke"
+                                            d="M 218 232 C 258 212 292 178 306 152 C 310 188 318 226 336 226" />
+                                        <!-- 3. i dot (at x=314, y=96..108) -->
+                                        <path class="draw-stroke" d="M 310 92 L 320 112" />
+                                        <!-- 4. first n -->
+                                        <path class="draw-stroke"
+                                            d="M 336 226 C 356 205 372 136 392 136 C 408 142 402 205 398 228 C 422 195 452 142 478 144 C 492 152 484 222 488 240 C 505 225 524 195 542 168" />
+                                        <!-- 5. s -->
+                                        <path class="draw-stroke"
+                                            d="M 542 168 C 562 135 585 84 578 84 C 565 84 562 128 584 168 C 602 204 586 242 564 240 C 550 236 558 205 592 178 C 618 145 642 102 658 68" />
+                                        <!-- 6. t stem -->
+                                        <path class="draw-stroke"
+                                            d="M 684 12 C 674 92 664 195 676 238 C 686 244 702 222 716 198" />
+                                        <!-- 7. t crossbar (at x=650..708, y=120..126) -->
+                                        <path class="draw-stroke" d="M 648 126 L 710 118" />
+                                        <!-- 8. o -->
+                                        <path class="draw-stroke"
+                                            d="M 796 144 C 764 152 756 212 782 238 C 810 246 836 202 826 154 C 818 138 796 142 818 146" />
+                                        <!-- 9. second n -->
+                                        <path class="draw-stroke"
+                                            d="M 832 146 C 862 144 892 144 910 146 C 916 172 908 216 912 234 C 936 212 978 144 1004 148 C 1020 156 1014 225 1034 242" />
+
+                                        <!-- "Hansel." -->
+                                        <!-- 10. H -->
+                                        <path class="draw-stroke"
+                                            d="M 142 324 C 152 385 164 455 154 490 C 142 496 130 468 146 426 C 168 386 204 352 222 300 C 216 368 216 442 236 482" />
+                                        <!-- 11. a + n -->
+                                        <path class="draw-stroke"
+                                            d="M 338 388 C 306 376 280 412 288 456 C 296 482 328 452 340 414 C 346 446 354 474 368 474 C 388 462 408 386 430 388 C 442 402 434 452 440 472 C 462 448 490 390 514 394 C 528 405 524 466 538 484" />
+                                        <!-- 12. s -->
+                                        <path class="draw-stroke"
+                                            d="M 554 468 C 584 422 624 336 616 334 C 602 334 606 385 628 432 C 646 472 624 502 600 496 C 584 490 594 452 652 428" />
+                                        <!-- 13. e + l -->
+                                        <path class="draw-stroke"
+                                            d="M 672 424 C 715 415 744 392 738 368 C 730 348 696 368 696 418 C 698 462 742 466 782 434 C 828 388 886 318 872 286 C 852 272 818 338 818 422 C 820 474 868 476 918 408" />
+                                        <!-- 14. final dot . (at x=950..978, y=468) -->
+                                        <path class="draw-stroke" d="M 946 468 L 982 470" />
+                                    </g>
+                                    <!-- Solid reveal helper ensuring 100% pixel fidelity once completed -->
+                                    <rect id="maskSolidFill" class="mask-solid-fill" x="0" y="0" width="1044"
+                                        height="508" fill="#ffffff" />
+                                </mask>
+                            </defs>
+                            <image href="assets/image/winston-hansel.webp" width="1044" height="508"
+                                mask="url(#signature-mask)" />
+                        </svg>
+                    </div>
+
+                    <!-- Center Photo with Hover Swap (me-1 to me-2) -->
+                    <div class="photo-wrapper" id="photoWrapper" title="Winston Hansel">
+                        <div class="photo-inner">
+                            <img src="assets/image/me-1.webp" alt="Winston Hansel (Childhood)"
+                                class="photo-img photo-default" id="photoDefault">
+                            <img src="assets/image/me-2.webp" alt="Winston Hansel (Present)" class="photo-img photo-hover"
+                                id="photoHover">
+                        </div>
+                        <span class="photo-portfolio-accent" aria-hidden="true">portfolio.</span>
+                    </div>
+                </div>
+
+                <!-- Spatial Perspective Text Elements (Courier Prime) -->
+                <div class="perspective-texts" id="perspectiveTexts">
+                    <!-- (1) Top-Right: Smallest, Most Receded -->
+                    <div class="typewriter-block item-1" id="textBlock1">
+                        <span>(1) KEEP LOOKING.</span>
+                        <span>THERE'S MORE TO IT.</span>
+                    </div>
+
+                    <!-- (2) Mid-Right: Medium-Small Depth -->
+                    <div class="typewriter-block item-2" id="textBlock2">
+                        <span>(2) MAKE SOMETHING</span>
+                        <span>WORTH LOOKING AT.</span>
+                    </div>
+
+                    <!-- (3) Mid-Left: Intermediate Depth -->
+                    <div class="typewriter-block item-3" id="textBlock3">
+                        <span>(3) AND THEN</span>
+                        <span>LOOK AT IT AGAIN.</span>
+                    </div>
+
+                    <!-- (4) Bottom-Left: Largest Foreground Anchor -->
+                    <div class="typewriter-block item-4" id="textBlock4">
+                        <span>(4) SEE WHERE IT</span>
+                        <span>TAKES YOU.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section About -->
+        <section id="about" class="page-section about-editorial-section">
+            <div class="section-container">
+
+                <!-- Editorial Banner Statement (Reference Image 2 & 3) -->
+                <div class="about-hero-header">
+                    <span class="section-tag">[ 01 ] ABOUT ME</span>
+                    <h2 class="about-hero-headline">WINSTON HANSEL DYLAN WIJAYA<br><span
+                            class="hero-headline-sub">VISUAL COMMUNICATION DESIGNER</span></h2>
+                    <p class="about-hero-statement">Before we dive into my work, let me tell you a little about myself.
+                    </p>
+                </div>
+
+                <!-- Part 1: Kertas Kalkir (Vellum Tracing Paper) Overlay for Biography (Reference Image 3) -->
+                <div class="kalkir-stage-composition">
+                    <!-- Background Layer: Subtle Handwritten Accents (Gladly Mailed) behind Photo & Glass Biography Sheet -->
+                    <div class="about-bg-accents-layer" aria-hidden="true">
+                        <span class="about-bg-accent about-accent-center">Get to Know<br>me more</span>
+                        <span class="about-bg-accent about-accent-right">Get to Know<br>me more.</span>
+                    </div>
+
+                    <!-- Base Layer Underneath: Editorial Photo + Architectural Manifesto -->
+                    <div class="kalkir-base-layer">
+                        <div class="kalkir-photo-frame">
+                            <img src="assets/image/winston1-bnw-about.webp" alt="Winston Hansel Editorial B&W"
+                                class="kalkir-photo-img photo-bnw">
+                            <img src="assets/image/winston1-color-about.webp" alt="Winston Hansel Editorial Color"
+                                class="kalkir-photo-img photo-color">
+                            <div class="draft-corner-marks">
+                                <span class="corner-mark mark-tl">+</span>
+                                <span class="corner-mark mark-tr">+</span>
+                                <span class="corner-mark mark-bl">+</span>
+                                <span class="corner-mark mark-br">+</span>
+                            </div>
+                        </div>
+
+                        <div class="kalkir-manifesto-block">
+                            <span class="manifesto-tag">[ SKILL ]</span>
+                            <h3 class="manifesto-lead">Design Software &amp; Tools</h3>
+                            <div class="software-skills-grid">
+                                <div class="software-item" title="Adobe Photoshop">
+                                    <div class="software-badge adobe-ps">
+                                        <span class="software-abbr">Ps</span>
+                                    </div>
+                                    <div class="software-meta">
+                                        <span class="software-name">Photoshop</span>
+                                        <span class="software-type">Photo &amp; Raster</span>
+                                    </div>
+                                </div>
+
+                                <div class="software-item" title="Adobe Illustrator">
+                                    <div class="software-badge adobe-ai">
+                                        <span class="software-abbr">Ai</span>
+                                    </div>
+                                    <div class="software-meta">
+                                        <span class="software-name">Illustrator</span>
+                                        <span class="software-type">Vector &amp; Identity</span>
+                                    </div>
+                                </div>
+
+                                <div class="software-item" title="Adobe InDesign">
+                                    <div class="software-badge adobe-id">
+                                        <span class="software-abbr">Id</span>
+                                    </div>
+                                    <div class="software-meta">
+                                        <span class="software-name">InDesign</span>
+                                        <span class="software-type">Editorial &amp; Layout</span>
+                                    </div>
+                                </div>
+
+                                <div class="software-item" title="Adobe After Effects">
+                                    <div class="software-badge adobe-ae">
+                                        <span class="software-abbr">Ae</span>
+                                    </div>
+                                    <div class="software-meta">
+                                        <span class="software-name">After Effects</span>
+                                        <span class="software-type">Motion &amp; Visuals</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- CV Action Buttons (View CV, Download CV & Contact Me) -->
+                            <div class="cv-actions-row">
+                                <button type="button" class="cv-btn cv-btn-view" id="openCvModalBtn">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        aria-hidden="true">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                        <circle cx="12" cy="12" r="3" />
+                                    </svg>
+                                    <span>VIEW MY CV</span>
+                                </button>
+                                <a href="assets/image/cv-winston.webp" download="Winston-Hansel-CV.webp"
+                                    class="cv-btn cv-btn-download">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        aria-hidden="true">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                        <polyline points="7 10 12 15 17 10" />
+                                        <line x1="12" y1="15" x2="12" y2="3" />
+                                    </svg>
+                                    <span>DOWNLOAD CV</span>
+                                </a>
+                                <a href="#contact" class="cv-btn cv-btn-contact">
+                                    <span>Contact Me →</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Overlapping Kertas Kalkir Sheet (Translucent Vellum Tracing Paper) -->
+                    <article class="kalkir-sheet-overlay" id="kalkirSheet">
+                        <div class="kalkir-sheet-texture"></div>
+
+                        <!-- Stamps Container Layer (Click anywhere on this paper to stamp!) -->
+                        <div class="kalkir-stamps-layer" id="kalkirStampsLayer" aria-hidden="true"></div>
+
+                        <!-- Interactive Stamp Toolbar (Stamp Me Indicator & Eraser) -->
+                        <div class="kalkir-stamp-toolbar">
+                            <div class="stamp-indicator-pill" id="stampIndicatorPill"
+                                title="Click anywhere on this paper to stamp!">
+                                <span class="stamp-pulse-dot"></span>
+                                <span class="stamp-pill-text">stamp me!</span>
+                            </div>
+                            <button type="button" class="stamp-eraser-btn" id="stampEraserBtn"
+                                title="Clear all stamps from paper" aria-label="Clear all stamps" disabled>
+                                <svg class="eraser-icon" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M20 20H7L3 16C2 15 2 13 3 12L13 2L22 11L18 15"></path>
+                                    <path d="M18 15L11 8"></path>
+                                </svg>
+                                <span class="eraser-label">CLEAR</span>
+                                <span class="eraser-count" id="stampEraserCount">0</span>
+                            </button>
+                        </div>
+
+                        <!-- Kalkir Sheet Header -->
+                        <div class="kalkir-sheet-header">
+                            <div class="kalkir-top-meta">
+                                <span class="kalkir-doc-tag">[ 01 / DOSSIER — BIO &amp; ESSAY ]</span>
+                                <span class="kalkir-doc-ref">REF. 2026 // WH</span>
+                            </div>
+                            <h3 class="kalkir-serif-title">Biography</h3>
+                        </div>
+
+                        <!-- Kalkir Sheet Content -->
+                        <div class="kalkir-sheet-body">
+                            <p class="kalkir-body-text">
+                                Hey, I'm Winston! A Visual Communication Design student and aspiring designer with a
+                                passion for graphic design, branding, and visual storytelling.
+                            </p>
+                            <p class="kalkir-body-text">
+                                I enjoy exploring ideas, experimenting with visual languages, and finding meaningful
+                                ways to translate concepts into visual experiences. From typography and layouts to
+                                visual identities, I'm always curious about how design can communicate, connect, and
+                                tell stories.
+                            </p>
+                            <p class="kalkir-body-text">
+                                I believe every project is an opportunity to learn something new, challenge
+                                perspectives, and discover possibilities. I'm always open to new ideas, collaborations,
+                                and creative adventures.
+                            </p>
+                            <p class="kalkir-body-text kalkir-closing-note">
+                                Feel free to explore my work and get to know a little more about me
+                            </p>
+                        </div>
+
+                        <!-- Kalkir Paper Bottom Stamp -->
+                        <div class="kalkir-sheet-footer">
+                            <span class="kalkir-stamp">WINSTON HANSEL STUDIO</span>
+                            <span class="kalkir-page-idx">PG. 01 / 03</span>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Part 2: Education Section (Reference Image 1) -->
+                <div class="about-education-section">
+                    <div class="education-header-bar">
+                        <h3 class="editorial-block-title">EDUCATION</h3>
+                        <span class="exp-bracket-year">[ ACADEMIC &amp; INTENSIVES ]</span>
+                    </div>
+
+                    <div class="education-list-horizontal">
+                        <!-- 01. SMAKR Petra 1 Surabaya -->
+                        <article class="education-card-item">
+                            <span class="edu-card-index" aria-hidden="true">01</span>
+                            <div class="edu-card-body">
+                                <span class="edu-micro-label">Institution</span>
+                                <h4 class="education-name">SMAKR Petra 1, Surabaya</h4>
+
+                                <span class="edu-micro-label edu-label-about">About</span>
+                                <p class="education-major">Science Major<br>2021 — 2024</p>
+                                <p class="education-detail">Completed senior high school in the Natural Sciences stream while actively leading student committees and school events. Awarded Most Proactive Student of the Class of 2024.</p>
+                                <span class="education-footnote">Surabaya, Indonesia · Honors &amp; Student Leadership</span>
+                            </div>
+                        </article>
+
+                        <!-- 02. Universitas Pelita Harapan -->
+                        <article class="education-card-item">
+                            <span class="edu-card-index" aria-hidden="true">02</span>
+                            <div class="edu-card-body">
+                                <span class="edu-micro-label">Institution</span>
+                                <h4 class="education-name">Universitas Pelita Harapan</h4>
+
+                                <span class="edu-micro-label edu-label-about">About</span>
+                                <p class="education-major">Visual Communication Design<br>GPA: 3.92 / 4.00 · 2024 — Present</p>
+                                <p class="education-detail">Specializing in graphic design, brand identity systems, editorial typography, and visual storytelling while actively serving as President of HMDKV UPH.</p>
+                                <span class="education-footnote">Lippo Village, Tangerang · B.Des. Candidate</span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- Part 2: Experience Snaking Timeline Grid (7 Items, Reference Layout) -->
+                <div class="about-experience-section" id="aboutExperienceSection">
+                    <div class="experience-top-bar">
+                        <h3 class="editorial-block-title">EXPERIENCE</h3>
+                    </div>
+
+                    <div class="exp-timeline-stage" id="expTimelineStage">
+                        <!-- Background Layer: Overlapping Handwritten Year Accents (Gladly Mailed) -->
+                        <div class="exp-year-accents-layer" aria-hidden="true">
+                            <span class="exp-year-accent exp-year-2026">2026</span>
+                            <span class="exp-year-accent exp-year-2025">2025</span>
+                            <span class="exp-year-accent exp-year-2024">2024</span>
+                        </div>
+
+                        <!-- Dynamic SVG Snaking Line & Travelling Indicator Dot -->
+                        <svg class="exp-timeline-svg" id="expTimelineSvg" aria-hidden="true">
+                            <path class="exp-timeline-path-bg" id="expTimelinePathBg" d="" fill="none" />
+                            <path class="exp-timeline-path-fill" id="expTimelinePathFill" d="" fill="none" />
+                            <circle class="exp-timeline-dot-pulse" id="expTimelineDotPulse" cx="0" cy="0" r="13" />
+                            <circle class="exp-timeline-dot" id="expTimelineDot" cx="0" cy="0" r="7.5" />
+                        </svg>
+
+                        <!-- 3-Column × 2-Row Snaking Grid -->
+                        <div class="exp-timeline-grid" id="expTimelineGrid">
+                            <!-- ROW 1, COL 1: Experience 01 -->
+                            <article class="exp-timeline-item exp-pos-r1c1 is-active" data-exp-index="0">
+                                <div class="exp-item-top">
+                                    <div class="exp-item-titles">
+                                        <span class="exp-num">01</span>
+                                        <h4 class="exp-company-line">PRESIDENT OF HM DKV UPH</h4>
+                                        <p class="exp-org-line">Himpunan Mahasiswa DKV UPH</p>
+                                    </div>
+                                    <div class="exp-thumb-placeholder">
+                                        <img src="assets/image/exp-hmdkv.webp" alt="President of HM DKV UPH"
+                                            class="exp-thumb-img" loading="lazy">
+                                    </div>
+                                </div>
+                                <p class="exp-desc-line">Leading the student association by coordinating initiatives,
+                                    managing organizational direction, and fostering collaboration within the DKV
+                                    community.</p>
+                                <div class="exp-meta-footer">
+                                    <span>ROLE: EXECUTIVE PRESIDENT</span>
+                                    <span>PERIOD: 2025 — 2026 // UPH</span>
+                                </div>
+                            </article>
+
+                            <!-- ROW 1, COL 2: Experience 02 -->
+                            <article class="exp-timeline-item exp-pos-r1c2" data-exp-index="1">
+                                <div class="exp-item-top">
+                                    <div class="exp-item-titles">
+                                        <span class="exp-num">02</span>
+                                        <h4 class="exp-company-line">CHIEF COMMITTEE — DKV UPH AWARDS 2026</h4>
+                                        <p class="exp-org-line">Annual Design Appreciation Night</p>
+                                    </div>
+                                    <div class="exp-thumb-placeholder">
+                                        <img src="assets/image/exp-awards-chief-comittee.webp"
+                                            alt="Chief Committee — DKV UPH Awards 2026" class="exp-thumb-img"
+                                            loading="lazy">
+                                    </div>
+                                </div>
+                                <p class="exp-desc-line">Overseeing the planning and execution of an annual awards
+                                    event, bringing together students, faculty, and the creative community to celebrate
+                                    design achievements.</p>
+                                <div class="exp-meta-footer">
+                                    <span>ROLE: CHIEF COMMITTEE</span>
+                                    <span>PERIOD: 2026 // ANNUAL EXHIBITION</span>
+                                </div>
+                            </article>
+
+                            <!-- ROW 1, COL 3: Experience 03 -->
+                            <article class="exp-timeline-item exp-pos-r1c3" data-exp-index="2">
+                                <div class="exp-item-top">
+                                    <div class="exp-item-titles">
+                                        <span class="exp-num">03</span>
+                                        <h4 class="exp-company-line">CHIEF COMMITTEE — REFORMA 2026</h4>
+                                        <p class="exp-org-line">Design Exhibition, Talks &amp; Showcase</p>
+                                    </div>
+                                    <div class="exp-thumb-placeholder">
+                                        <img src="assets/image/exp-reforma.webp" alt="Chief Committee — Reforma 2026"
+                                            class="exp-thumb-img" loading="lazy">
+                                    </div>
+                                </div>
+                                <p class="exp-desc-line">Leading the organizing team in developing and executing a
+                                    design event featuring exhibitions, talks, workshops, and creative showcases.</p>
+                                <div class="exp-meta-footer">
+                                    <span>ROLE: CHIEF COMMITTEE</span>
+                                    <span>PERIOD: 2026 // DESIGN FESTIVAL</span>
+                                </div>
+                            </article>
+
+                            <!-- ROW 2, COL 3 (Right): Experience 04 -->
+                            <article class="exp-timeline-item exp-pos-r2c3" data-exp-index="3">
+                                <div class="exp-item-top">
+                                    <div class="exp-item-titles">
+                                        <span class="exp-num">04</span>
+                                        <h4 class="exp-company-line">PROGRAM DIVISION — UPH VCD TYPOLOG</h4>
+                                        <p class="exp-org-line">Visual Communication Design Community</p>
+                                    </div>
+                                    <div class="exp-thumb-placeholder">
+                                        <img src="assets/image/exp-typolog.webp"
+                                            alt="Program Division — UPH VCD Typolog" class="exp-thumb-img"
+                                            loading="lazy">
+                                    </div>
+                                </div>
+                                <p class="exp-desc-line">Contributing to program planning and coordination, supporting
+                                    the development of activities and experiences for the Visual Communication Design
+                                    community.</p>
+                                <div class="exp-meta-footer">
+                                    <span>ROLE: PROGRAM DIVISION</span>
+                                    <span>PERIOD: 2025 // VCD COMMUNITY</span>
+                                </div>
+                            </article>
+
+                            <!-- ROW 2, COL 2 (Middle): Experience 05 -->
+                            <article class="exp-timeline-item exp-pos-r2c2" data-exp-index="4">
+                                <div class="exp-item-top">
+                                    <div class="exp-item-titles">
+                                        <span class="exp-num">05</span>
+                                        <h4 class="exp-company-line">MASTER OF CEREMONY — DKV UPH AWARDS 2024</h4>
+                                        <p class="exp-org-line">Annual Design Awards Ceremony</p>
+                                    </div>
+                                    <div class="exp-thumb-placeholder">
+                                        <img src="assets/image/exp-uph-awards-mc.webp"
+                                            alt="Master of Ceremony — DKV UPH Awards 2024" class="exp-thumb-img"
+                                            loading="lazy">
+                                    </div>
+                                </div>
+                                <p class="exp-desc-line">Hosting the annual awards ceremony, guiding the event flow,
+                                    engaging the audience, and creating a memorable experience for attendees.</p>
+                                <div class="exp-meta-footer">
+                                    <span>ROLE: MASTER OF CEREMONY</span>
+                                    <span>PERIOD: 2024 // LIVE STAGE</span>
+                                </div>
+                            </article>
+
+                            <!-- ROW 2, COL 1 (Left): Experience 06 -->
+                            <article class="exp-timeline-item exp-pos-r2c1" data-exp-index="5">
+                                <div class="exp-item-top">
+                                    <div class="exp-item-titles">
+                                        <span class="exp-num">06</span>
+                                        <h4 class="exp-company-line">VIDEO MAPPING DESIGNER — BANK INDONESIA BANTEN 2026
+                                        </h4>
+                                        <p class="exp-org-line">Bank Indonesia Provinsi Banten</p>
+                                    </div>
+                                    <div class="exp-thumb-placeholder">
+                                        <img src="assets/image/exp-bi-banten.webp"
+                                            alt="Video Mapping Designer — Bank Indonesia Banten 2026"
+                                            class="exp-thumb-img" loading="lazy">
+                                    </div>
+                                </div>
+                                <p class="exp-desc-line">Designing projection mapping visuals and motion graphics for
+                                    Bank Indonesia Banten, translating institutional narratives into an immersive
+                                    large-scale spatial visual experience.</p>
+                                <div class="exp-meta-footer">
+                                    <span>ROLE: VIDEO MAPPING DESIGNER</span>
+                                    <span>PERIOD: 2026 // BANK INDONESIA BANTEN</span>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal: CV Preview & Download -->
+                <dialog id="cvModal" class="letter-modal cv-modal">
+                    <div class="letter-modal-box cv-modal-box">
+                        <div class="letter-modal-header">
+                            <div>
+                                <span class="letter-modal-tag">[ CURRICULUM VITAE — WINSTON HANSEL ]</span>
+                                <h3 class="letter-modal-title">Curriculum Vitae</h3>
+                            </div>
+                            <button type="button" class="letter-modal-close" id="cvModalClose"
+                                aria-label="Close CV preview">✕</button>
+                        </div>
+
+                        <div class="letter-modal-preview cv-modal-preview">
+                            <img src="assets/image/cv-winston.webp" alt="Winston Hansel — Curriculum Vitae"
+                                class="cv-preview-img">
+                        </div>
+
+                        <div class="letter-modal-actions">
+                            <a href="assets/image/cv-winston.webp" download="Winston-Hansel-CV.webp"
+                                class="btn-modal-action btn-copy-img">
+                                <span class="btn-icon">📥</span> <span>Download CV (PNG)</span>
+                            </a>
+                            <a href="#contact" class="btn-modal-action btn-download-img" id="cvModalContactBtn">
+                                <span class="btn-icon">✉</span> <span>Contact Me →</span>
+                            </a>
+                            <a href="assets/image/cv-winston.webp" target="_blank" rel="noopener noreferrer"
+                                class="btn-modal-action btn-mail-app">
+                                <span class="btn-icon">↗</span> <span>Open Full Size</span>
+                            </a>
+                        </div>
+                    </div>
+                </dialog>
+
+            </div>
+        </section>
+
+        <!-- Section Project: Interactive Scattered Cards Gallery -->
+        <section id="project" class="page-section project-section">
+            <div class="section-container">
+                <div class="section-header project-header-flex">
+                    <div>
+                        <span class="section-tag">[ 02 ] SELECTED WORKS</span>
+                        <h2 class="section-title">A curated collection of visual identities, digital products, and
+                            creative experiments.</h2>
+                    </div>
+
+                    <!-- Interactive Control Hint -->
+                    <div class="project-stage-controls">
+                        <div class="drag-hint-pill">
+                            <span class="drag-hint-text">DRAG TO REARRANGE • TAP TO REVEAL DETAILS</span>
+                        </div>
+                        <button type="button" class="reset-scatter-btn" id="resetScatterBtn"
+                            title="Re-scatter cards to original layout">
+                            RESET CARDS
+                        </button>
+                    </div>
+                </div>
+
+                <!-- The Interactive Scattered Table Stage -->
+                <div class="project-scatter-stage" id="projectScatterStage">
+                    <div class="stage-mat-texture"></div>
+
+                    <!-- Project Card 01: Faculty of Design (Branding) -->
+                    <div class="scatter-card" id="projCard1" data-id="1"
+                        style="--rot: -7deg; --init-x: 5%; --init-y: 8%;">
+                        <div class="card-flipper">
+                            <!-- Front: Art Photo Print with White Border -->
+                            <div class="card-face card-front">
+                                <div class="card-photo-wrap">
+                                    <img src="assets/image/project-fd.webp" alt="Faculty of Design" draggable="false">
+                                </div>
+                                <div class="card-caption">
+                                    <span class="card-num">01</span>
+                                    <span class="card-title">Faculty of Design</span>
+                                    <span class="card-tap-cue">TAP FOR INFO ↗</span>
+                                </div>
+                            </div>
+                            <!-- Back: Editorial Postcard Description -->
+                            <div class="card-face card-back">
+                                <div class="back-meta-bar">
+                                    <span class="back-project-id">[ PROJECT HIGHLIGHT ]</span>
+                                    <span class="back-year">2025</span>
+                                </div>
+                                <h3 class="back-title">Faculty of Design</h3>
+                                <p class="back-category">BRANDING &amp; VISUAL IDENTITY</p>
+                                <p class="back-desc">A comprehensive visual identity system and branding architecture
+                                    for the Faculty of Design. Blending institutional structure with expressive
+                                    typography, modular design frameworks, and adaptable brand applications across
+                                    digital and physical touchpoints.</p>
+                                <div class="back-disciplines">
+                                    <span>BRAND IDENTITY</span>
+                                    <span>•</span>
+                                    <span>SYSTEM DESIGN</span>
+                                    <span>•</span>
+                                    <span>TYPOGRAPHY</span>
+                                </div>
+                                <div class="back-footer">
+                                    <span class="back-flip-hint">TAP TO FLIP BACK ↻</span>
+                                    <a href="#wd-project-1" class="back-see-more" data-wd-target="#wd-project-1">See
+                                        More <span class="see-more-arrow">→</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 02: Central Java Heritage (Branding & Editorial) -->
+                    <div class="scatter-card" id="projCard2" data-id="2"
+                        style="--rot: 5deg; --init-x: 30%; --init-y: 5%;">
+                        <div class="card-flipper">
+                            <div class="card-face card-front">
+                                <div class="card-photo-wrap">
+                                    <img src="assets/image/project-central-java.webp" alt="Central Java Heritage"
+                                        draggable="false">
+                                </div>
+                                <div class="card-caption">
+                                    <span class="card-num">02</span>
+                                    <span class="card-title">Central Java Heritage</span>
+                                    <span class="card-tap-cue">TAP FOR INFO ↗</span>
+                                </div>
+                            </div>
+                            <div class="card-face card-back">
+                                <div class="back-meta-bar">
+                                    <span class="back-project-id">[ PROJECT HIGHLIGHT ]</span>
+                                    <span class="back-year">2025</span>
+                                </div>
+                                <h3 class="back-title">Central Java Heritage</h3>
+                                <p class="back-category">BRANDING &amp; EDITORIAL</p>
+                                <p class="back-desc">A cultural publication and brand identity celebrating the
+                                    architectural wonders, historical traditions, and artisanal craftsmanship of Central
+                                    Java. Articulated through high-impact photography, refined layout grids, and
+                                    cultural storytelling.</p>
+                                <div class="back-disciplines">
+                                    <span>EDITORIAL DESIGN</span>
+                                    <span>•</span>
+                                    <span>BRAND IDENTITY</span>
+                                    <span>•</span>
+                                    <span>CULTURAL ARCHIVE</span>
+                                </div>
+                                <div class="back-footer">
+                                    <span class="back-flip-hint">TAP TO FLIP BACK ↻</span>
+                                    <a href="#wd-project-2" class="back-see-more" data-wd-target="#wd-project-2">See
+                                        More <span class="see-more-arrow">→</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 03: RECONSTRUCTED (Editorial & Typography) -->
+                    <div class="scatter-card" id="projCard3" data-id="3"
+                        style="--rot: -12deg; --init-x: 56%; --init-y: 10%;">
+                        <div class="card-flipper">
+                            <div class="card-face card-front">
+                                <div class="card-photo-wrap">
+                                    <img src="assets/image/project-reconstructed.webp" alt="RECONSTRUCTED"
+                                        draggable="false">
+                                </div>
+                                <div class="card-caption">
+                                    <span class="card-num">03</span>
+                                    <span class="card-title">RECONSTRUCTED</span>
+                                    <span class="card-tap-cue">TAP FOR INFO ↗</span>
+                                </div>
+                            </div>
+                            <div class="card-face card-back">
+                                <div class="back-meta-bar">
+                                    <span class="back-project-id">[ PROJECT HIGHLIGHT ]</span>
+                                    <span class="back-year">2025</span>
+                                </div>
+                                <h3 class="back-title">RECONSTRUCTED</h3>
+                                <p class="back-category">EDITORIAL &amp; TYPOGRAPHY</p>
+                                <p class="back-desc">An avant-garde editorial and typographic exploration investigating
+                                    the deconstruction and reimagining of classic grid conventions. Exploring visual
+                                    tension, modular spatial disruptions, and expressive letterforms across sequential
+                                    print spreads.</p>
+                                <div class="back-disciplines">
+                                    <span>EXPERIMENTAL TYPE</span>
+                                    <span>•</span>
+                                    <span>EDITORIAL DESIGN</span>
+                                    <span>•</span>
+                                    <span>COMPOSITION</span>
+                                </div>
+                                <div class="back-footer">
+                                    <span class="back-flip-hint">TAP TO FLIP BACK ↻</span>
+                                    <a href="#wd-project-3" class="back-see-more" data-wd-target="#wd-project-3">See
+                                        More <span class="see-more-arrow">→</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 04: Modern Robotics (Editorial) -->
+                    <div class="scatter-card" id="projCard4" data-id="4"
+                        style="--rot: 8deg; --init-x: 16%; --init-y: 44%;">
+                        <div class="card-flipper">
+                            <div class="card-face card-front">
+                                <div class="card-photo-wrap">
+                                    <img src="assets/image/project-modern-robotics-5.webp" alt="Modern Robotics"
+                                        draggable="false">
+                                </div>
+                                <div class="card-caption">
+                                    <span class="card-num">04</span>
+                                    <span class="card-title">Modern Robotics</span>
+                                    <span class="card-tap-cue">TAP FOR INFO ↗</span>
+                                </div>
+                            </div>
+                            <div class="card-face card-back">
+                                <div class="back-meta-bar">
+                                    <span class="back-project-id">[ PROJECT HIGHLIGHT ]</span>
+                                    <span class="back-year">2024</span>
+                                </div>
+                                <h3 class="back-title">Modern Robotics</h3>
+                                <p class="back-category">EDITORIAL DESIGN</p>
+                                <p class="back-desc">A technical editorial monograph documenting the synergy between
+                                    robotic engineering, automation, and human interaction. Structured through technical
+                                    blueprint grids, data visualizations, and crisp monospace typography.</p>
+                                <div class="back-disciplines">
+                                    <span>EDITORIAL LAYOUT</span>
+                                    <span>•</span>
+                                    <span>DATA VISUALIZATION</span>
+                                    <span>•</span>
+                                    <span>INFORMATION DESIGN</span>
+                                </div>
+                                <div class="back-footer">
+                                    <span class="back-flip-hint">TAP TO FLIP BACK ↻</span>
+                                    <a href="#wd-project-4" class="back-see-more" data-wd-target="#wd-project-4">See
+                                        More <span class="see-more-arrow">→</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 05: MONOPOLI: Tanah Blambangan (Boardgame) -->
+                    <div class="scatter-card" id="projCard5" data-id="5"
+                        style="--rot: -4deg; --init-x: 42%; --init-y: 44%;">
+                        <div class="card-flipper">
+                            <div class="card-face card-front">
+                                <div class="card-photo-wrap">
+                                    <img src="assets/image/project-monopoli.webp" alt="MONOPOLI: Tanah Blambangan"
+                                        draggable="false">
+                                </div>
+                                <div class="card-caption">
+                                    <span class="card-num">05</span>
+                                    <span class="card-title">Tanah Blambangan</span>
+                                    <span class="card-tap-cue">TAP FOR INFO ↗</span>
+                                </div>
+                            </div>
+                            <div class="card-face card-back">
+                                <div class="back-meta-bar">
+                                    <span class="back-project-id">[ PROJECT HIGHLIGHT ]</span>
+                                    <span class="back-year">2024</span>
+                                </div>
+                                <h3 class="back-title">MONOPOLI: Tanah Blambangan</h3>
+                                <p class="back-category">BOARDGAME &amp; PACKAGING</p>
+                                <p class="back-desc">A localized board game concept transforming the classic Monopoly
+                                    format into an engaging regional journey across Tanah Blambangan (Banyuwangi).
+                                    Encompassing custom illustrated game boards, character assets, localized property
+                                    cards, and tactile packaging.</p>
+                                <div class="back-disciplines">
+                                    <span>BOARDGAME DESIGN</span>
+                                    <span>•</span>
+                                    <span>PACKAGING &amp; COLLATERAL</span>
+                                    <span>•</span>
+                                    <span>ILLUSTRATION</span>
+                                </div>
+                                <div class="back-footer">
+                                    <span class="back-flip-hint">TAP TO FLIP BACK ↻</span>
+                                    <a href="#wd-project-5" class="back-see-more" data-wd-target="#wd-project-5">See
+                                        More <span class="see-more-arrow">→</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 06: BOSCH Product Photography & Catalog -->
+                    <div class="scatter-card" id="projCard6" data-id="6"
+                        style="--rot: 6deg; --init-x: 68%; --init-y: 42%;">
+                        <div class="card-flipper">
+                            <div class="card-face card-front">
+                                <div class="card-photo-wrap">
+                                    <img src="assets/image/project-bosch-2.webp"
+                                        alt="BOSCH Product Photography & Catalog" draggable="false">
+                                </div>
+                                <div class="card-caption">
+                                    <span class="card-num">06</span>
+                                    <span class="card-title">BOSCH Catalog</span>
+                                    <span class="card-tap-cue">TAP FOR INFO ↗</span>
+                                </div>
+                            </div>
+                            <div class="card-face card-back">
+                                <div class="back-meta-bar">
+                                    <span class="back-project-id">[ PROJECT HIGHLIGHT ]</span>
+                                    <span class="back-year">2025</span>
+                                </div>
+                                <h3 class="back-title">BOSCH Product Photography &amp; Catalog</h3>
+                                <p class="back-category">PRODUCT PHOTOGRAPHY &amp; EDITORIAL</p>
+                                <p class="back-desc">Product photography exploring extreme close-up, in-use with model,
+                                    in scenery, detailing, and editorial layout for catalog design.</p>
+                                <div class="back-disciplines">
+                                    <span>PRODUCT PHOTOGRAPHY</span>
+                                    <span>•</span>
+                                    <span>CATALOG DESIGN</span>
+                                    <span>•</span>
+                                    <span>EDITORIAL</span>
+                                </div>
+                                <div class="back-footer">
+                                    <span class="back-flip-hint">TAP TO FLIP BACK ↻</span>
+                                    <a href="#wd-project-6" class="back-see-more" data-wd-target="#wd-project-6">See
+                                        More <span class="see-more-arrow">→</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Section Work Detail: Editorial Case Studies & Slideable Carousels -->
+        <section id="work-detail" class="page-section work-detail-section">
+            <div class="section-container">
+                <div class="section-header wd-section-header">
+                    <span class="section-tag">[ 03 ] WORK DETAILS</span>
+                    <h2 class="section-title">In-depth visual archives, design systems, and editorial explorations
+                        across selected works.</h2>
+                </div>
+
+                <div class="wd-projects-list">
+                    <!-- =======================================================
+                         01. FACULTY OF DESIGN
+                         ======================================================= -->
+                    <article class="wd-project-block" id="wd-project-1" data-wd-project="1">
+                        <!-- Top Row: Overview Label (Left) + Title & Description (Right) -->
+                        <div class="wd-overview-grid">
+                            <div class="wd-col-left">
+                                <span class="wd-overview-label"><span class="wd-arrow">→</span> Overview // 01</span>
+                            </div>
+                            <div class="wd-col-right">
+                                <h3 class="wd-project-title">Faculty of Design</h3>
+                                <p class="wd-project-desc">
+                                    A comprehensive visual identity system and branding architecture for the <a
+                                        href="https://www.instagram.com/fd.uph?utm_source=ig_web_button_share_sheet&amp;exln=ZDNlZDc0MzIxNw=="
+                                        target="_blank" rel="noopener noreferrer" class="wd-inline-link">Faculty of
+                                        Design</a>. Blending institutional structure with expressive typography, modular
+                                    design frameworks, and adaptable brand applications across digital and physical
+                                    touchpoints.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Second Row: Services & Info + Carousel Navigation Controls -->
+                        <div class="wd-info-grid">
+                            <div class="wd-col-left">
+                                <span class="wd-info-heading">Services &amp; Info</span>
+                            </div>
+                            <div class="wd-col-right wd-info-bar">
+                                <div class="wd-meta-columns">
+                                    <div class="wd-meta-item">
+                                        <span class="wd-meta-label">Year</span>
+                                        <span class="wd-meta-val">2025</span>
+                                    </div>
+                                    <div class="wd-meta-item">
+                                        <span class="wd-meta-label">Client</span>
+                                        <span class="wd-meta-val">Faculty of Design</span>
+                                    </div>
+                                    <div class="wd-meta-item">
+                                        <span class="wd-meta-label">Art Direction</span>
+                                        <span class="wd-meta-val">Brand Identity &amp; System Design</span>
+                                    </div>
+                                </div>
+
+                                <div class="wd-carousel-controls" aria-label="Carousel Navigation">
+                                    <span class="wd-slide-counter">01 / 06</span>
+                                    <button type="button" class="wd-nav-btn wd-prev-btn" aria-label="Previous slide"
+                                        title="Previous slide">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M19 12H5" />
+                                            <path d="M12 19l-7-7 7-7" />
+                                        </svg>
+                                    </button>
+                                    <button type="button" class="wd-nav-btn wd-next-btn" aria-label="Next slide"
+                                        title="Next slide">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M5 12h14" />
+                                            <path d="M12 5l7 7-7 7" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slideable Image Carousel -->
+                        <div class="wd-carousel-stage">
+                            <div class="wd-carousel-track" tabindex="0" role="region"
+                                aria-label="Faculty of Design gallery">
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-fd.webp" alt="Faculty of Design — Brand Identity Cover"
+                                        draggable="false">
+                                </figure>
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-fd-2.webp"
+                                        alt="Faculty of Design — Primary Logotype & Crest" draggable="false">
+                                </figure>
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-fd-3.webp"
+                                        alt="Faculty of Design — Brand Guidelines Spreads" draggable="false">
+                                </figure>
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-fd-4.webp"
+                                        alt="Faculty of Design — Graphic System Application" draggable="false">
+                                </figure>
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-fd-5.webp"
+                                        alt="Faculty of Design — Editorial Layout System" draggable="false">
+                                </figure>
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-fd-6.webp"
+                                        alt="Faculty of Design — Environmental & Collateral" draggable="false">
+                                </figure>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Row: Index Number & Progress Bar -->
+                        <div class="wd-footer-bar">
+                            <div class="wd-footer-index">
+                                <span class="wd-index-num">01/</span>
+                                <span class="wd-index-caption">Institutional Rebrand &amp; Visual Guidelines</span>
+                            </div>
+                            <div class="wd-footer-right">
+                                <div class="wd-progress-track">
+                                    <div class="wd-progress-fill"></div>
+                                </div>
+                                <span class="wd-drag-cue">DRAG OR CLICK ARROWS →</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- =======================================================
+                         02. CENTRAL JAVA HERITAGE
+                         ======================================================= -->
+                    <article class="wd-project-block" id="wd-project-2" data-wd-project="2">
+                        <div class="wd-overview-grid">
+                            <div class="wd-col-left">
+                                <span class="wd-overview-label"><span class="wd-arrow">→</span> Overview // 02</span>
+                            </div>
+                            <div class="wd-col-right">
+                                <h3 class="wd-project-title">Central Java Heritage</h3>
+                                <p class="wd-project-desc">
+                                    A cultural publication and brand identity celebrating the architectural wonders,
+                                    historical traditions, and artisanal craftsmanship of Central Java, developed for a
+                                    tourism event held by <a href="https://www.panorama-jtb.com" target="_blank"
+                                        rel="noopener noreferrer" class="wd-inline-link">Panorama JTB</a>. Articulated
+                                    through high-impact photography, refined layout grids, and cultural storytelling to
+                                    showcase the region's rich cultural heritage and tourism potential.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="wd-info-grid">
+                            <div class="wd-col-left">
+                                <span class="wd-info-heading">Services &amp; Info</span>
+                            </div>
+                            <div class="wd-col-right wd-info-bar">
+                                <div class="wd-meta-columns">
+                                    <div class="wd-meta-item">
+                                        <span class="wd-meta-label">Year</span>
+                                        <span class="wd-meta-val">2025</span>
+                                    </div>
+                                    <div class="wd-meta-item">
+                                        <span class="wd-meta-label">Client</span>
+                                        <span class="wd-meta-val">Cultural Research Archive</span>
+                                    </div>
+                                    <div class="wd-meta-item">
+                                        <span class="wd-meta-label">Art Direction</span>
+                                        <span class="wd-meta-val">Branding &amp; Editorial Design</span>
+                                    </div>
+                                </div>
+
+                                <div class="wd-carousel-controls" aria-label="Carousel Navigation">
+                                    <span class="wd-slide-counter">01 / 06</span>
+                                    <button type="button" class="wd-nav-btn wd-prev-btn" aria-label="Previous slide"
+                                        title="Previous slide">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M19 12H5" />
+                                            <path d="M12 19l-7-7 7-7" />
+                                        </svg>
+                                    </button>
+                                    <button type="button" class="wd-nav-btn wd-next-btn" aria-label="Next slide"
+                                        title="Next slide">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M5 12h14" />
+                                            <path d="M12 5l7 7-7 7" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="wd-carousel-stage">
+                            <div class="wd-carousel-track" tabindex="0" role="region"
+                                aria-label="Central Java Heritage gallery">
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-central-java.webp"
+                                        alt="Central Java Heritage — Key Visual" draggable="false">
+                                </figure>
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-central-java-2.webp"
+                                        alt="Central Java Heritage — Exhibition Folder" draggable="false">
+                                </figure>
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-central-java-3.webp"
+                                        alt="Central Java Heritage — Editorial Spread 1" draggable="false">
+                                </figure>
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-central-java-4.webp"
+                                        alt="Central Java Heritage — Editorial Spread 2" draggable="false">
+                                </figure>
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-central-java-5.webp"
+                                        alt="Central Java Heritage — Typography & Detail" draggable="false">
+                                </figure>
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-central-java-6.webp"
+                                        alt="Central Java Heritage — Cultural Collateral" draggable="false">
+                                </figure>
+                            </div>
+                        </div>
+
+                        <div class="wd-footer-bar">
+                            <div class="wd-footer-index">
+                                <span class="wd-index-num">02/</span>
+                                <span class="wd-index-caption">World Tourism Exhibition &amp; Cultural Archive</span>
+                            </div>
+                            <div class="wd-footer-right">
+                                <div class="wd-progress-track">
+                                    <div class="wd-progress-fill"></div>
+                                </div>
+                                <span class="wd-drag-cue">DRAG OR CLICK ARROWS →</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- =======================================================
+                         03. RECONSTRUCTED
+                         ======================================================= -->
+                    <article class="wd-project-block" id="wd-project-3" data-wd-project="3">
+                        <div class="wd-overview-grid">
+                            <div class="wd-col-left">
+                                <span class="wd-overview-label"><span class="wd-arrow">→</span> Overview // 03</span>
+                            </div>
+                            <div class="wd-col-right">
+                                <h3 class="wd-project-title">RECONSTRUCTED</h3>
+                                <p class="wd-project-desc">
+                                    An avant-garde editorial and typographic exploration investigating the
+                                    deconstruction and reimagining of classic grid conventions through the contrasting
+                                    characteristics of <a href="https://www.monotype.com/fonts/gill-sans-nova"
+                                        target="_blank" rel="noopener noreferrer" class="wd-inline-link">Gill Sans
+                                        Nova</a> and <a href="https://www.monotype.com/fonts/joanna-nova"
+                                        target="_blank" rel="noopener noreferrer" class="wd-inline-link">Joanna Nova</a>
+                                    created by <a href="https://www.monotype.com" target="_blank"
+                                        rel="noopener noreferrer" class="wd-inline-link">Monotype</a>. Exploring visual
+                                    tension, modular spatial disruptions, and expressive letterforms through the
+                                    interplay of sans-serif and serif typography across sequential print spreads.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="wd-info-grid">
+                            <div class="wd-col-left">
+                                <span class="wd-info-heading">Services &amp; Info</span>
+                            </div>
+                            <div class="wd-col-right wd-info-bar">
+                                <div class="wd-meta-columns">
+                                    <div class="wd-meta-item">
+                                        <span class="wd-meta-label">Year</span>
+                                        <span class="wd-meta-val">2025</span>
+                                    </div>
+                                    <div class="wd-meta-item">
+                                        <span class="wd-meta-label">Client</span>
+                                        <span class="wd-meta-val">Experimental Design Study</span>
+                                    </div>
+                                    <div class="wd-meta-item">
+                                        <span class="wd-meta-label">Art Direction</span>
+                                        <span class="wd-meta-val">Editorial &amp; Experimental Type</span>
+                                    </div>
+                                </div>
+
+                                <div class="wd-carousel-controls" aria-label="Carousel Navigation">
+                                    <span class="wd-slide-counter">01 / 04</span>
+                                    <button type="button" class="wd-nav-btn wd-prev-btn" aria-label="Previous slide"
+                                        title="Previous slide">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M19 12H5" />
+                                            <path d="M12 19l-7-7 7-7" />
+                                        </svg>
+                                    </button>
+                                    <button type="button" class="wd-nav-btn wd-next-btn" aria-label="Next slide"
+                                        title="Next slide">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M5 12h14" />
+                                            <path d="M12 5l7 7-7 7" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="wd-carousel-stage">
+                            <div class="wd-carousel-track" tabindex="0" role="region"
+                                aria-label="RECONSTRUCTED gallery">
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-reconstructed.webp"
+                                        alt="RECONSTRUCTED — Editorial Cover" draggable="false">
+                                </figure>
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-reconstructed-2.webp"
+                                        alt="RECONSTRUCTED — Through Eric Gill's Archive Book" draggable="false">
+                                </figure>
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-reconstructed-3.webp"
+                                        alt="RECONSTRUCTED — Typographic Grid Spread" draggable="false">
+                                </figure>
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-reconstructed-4.webp"
+                                        alt="RECONSTRUCTED — Deconstructed Layout Spread" draggable="false">
+                                </figure>
+                            </div>
+                        </div>
+
+                        <div class="wd-footer-bar">
+                            <div class="wd-footer-index">
+                                <span class="wd-index-num">03/</span>
+                                <span class="wd-index-caption">Through Eric Gill's Archive — Typographic
+                                    Monograph</span>
+                            </div>
+                            <div class="wd-footer-right">
+                                <div class="wd-progress-track">
+                                    <div class="wd-progress-fill"></div>
+                                </div>
+                                <span class="wd-drag-cue">DRAG OR CLICK ARROWS →</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- =======================================================
+                         04. MODERN ROBOTICS
+                         ======================================================= -->
+                    <article class="wd-project-block" id="wd-project-4" data-wd-project="4">
+                        <div class="wd-overview-grid">
+                            <div class="wd-col-left">
+                                <span class="wd-overview-label"><span class="wd-arrow">→</span> Overview // 04</span>
+                            </div>
+                            <div class="wd-col-right">
+                                <h3 class="wd-project-title">Modern Robotics</h3>
+                                <p class="wd-project-desc">
+                                    A technical editorial monograph documenting the synergy between robotic engineering,
+                                    automation, and human interaction. Structured through technical blueprint grids,
+                                    data visualizations, and crisp monospace typography.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="wd-info-grid">
+                            <div class="wd-col-left">
+                                <span class="wd-info-heading">Services &amp; Info</span>
+                            </div>
+                            <div class="wd-col-right wd-info-bar">
+                                <div class="wd-meta-columns">
+                                    <div class="wd-meta-item">
+                                        <span class="wd-meta-label">Year</span>
+                                        <span class="wd-meta-val">2024</span>
+                                    </div>
+                                    <div class="wd-meta-item">
+                                        <span class="wd-meta-label">Client</span>
+                                        <span class="wd-meta-val">Technology Monograph</span>
+                                    </div>
+                                    <div class="wd-meta-item">
+                                        <span class="wd-meta-label">Art Direction</span>
+                                        <span class="wd-meta-val">Editorial &amp; Information Design</span>
+                                    </div>
+                                </div>
+
+                                <div class="wd-carousel-controls" aria-label="Carousel Navigation">
+                                    <span class="wd-slide-counter">01 / 05</span>
+                                    <button type="button" class="wd-nav-btn wd-prev-btn" aria-label="Previous slide"
+                                        title="Previous slide">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M19 12H5" />
+                                            <path d="M12 19l-7-7 7-7" />
+                                        </svg>
+                                    </button>
+                                    <button type="button" class="wd-nav-btn wd-next-btn" aria-label="Next slide"
+                                        title="Next slide">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M5 12h14" />
+                                            <path d="M12 5l7 7-7 7" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="wd-carousel-stage">
+                            <div class="wd-carousel-track" tabindex="0" role="region"
+                                aria-label="Modern Robotics gallery">
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-modern-robotics.webp"
+                                        alt="Modern Robotics — Publication Cover" draggable="false">
+                                </figure>
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-modern-robotics-2.webp"
+                                        alt="Modern Robotics — Editorial Architecture" draggable="false">
+                                </figure>
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-modern-robotics-3.webp"
+                                        alt="Modern Robotics — Technical Spread 1" draggable="false">
+                                </figure>
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-modern-robotics-4.webp"
+                                        alt="Modern Robotics — Technical Spread 2" draggable="false">
+                                </figure>
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-modern-robotics-5.webp"
+                                        alt="Modern Robotics — Full Monograph Overview" draggable="false">
+                                </figure>
+                            </div>
+                        </div>
+
+                        <div class="wd-footer-bar">
+                            <div class="wd-footer-index">
+                                <span class="wd-index-num">04/</span>
+                                <span class="wd-index-caption">Robotic Engineering &amp; Information Systems</span>
+                            </div>
+                            <div class="wd-footer-right">
+                                <div class="wd-progress-track">
+                                    <div class="wd-progress-fill"></div>
+                                </div>
+                                <span class="wd-drag-cue">DRAG OR CLICK ARROWS →</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- =======================================================
+                         05. MONOPOLI: TANAH BLAMBANGAN
+                         ======================================================= -->
+                    <article class="wd-project-block" id="wd-project-5" data-wd-project="5">
+                        <div class="wd-overview-grid">
+                            <div class="wd-col-left">
+                                <span class="wd-overview-label"><span class="wd-arrow">→</span> Overview // 05</span>
+                            </div>
+                            <div class="wd-col-right">
+                                <h3 class="wd-project-title">MONOPOLI: Tanah Blambangan</h3>
+                                <p class="wd-project-desc">
+                                    A localized board game concept transforming the classic Monopoly format into an
+                                    engaging regional journey across Tanah Blambangan (Banyuwangi). Encompassing custom
+                                    illustrated game boards, character assets, localized property cards, and tactile
+                                    packaging.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="wd-info-grid">
+                            <div class="wd-col-left">
+                                <span class="wd-info-heading">Services &amp; Info</span>
+                            </div>
+                            <div class="wd-col-right wd-info-bar">
+                                <div class="wd-meta-columns">
+                                    <div class="wd-meta-item">
+                                        <span class="wd-meta-label">Year</span>
+                                        <span class="wd-meta-val">2024</span>
+                                    </div>
+                                    <div class="wd-meta-item">
+                                        <span class="wd-meta-label">Client</span>
+                                        <span class="wd-meta-val">Blambangan Cultural Heritage</span>
+                                    </div>
+                                    <div class="wd-meta-item">
+                                        <span class="wd-meta-label">Art Direction</span>
+                                        <span class="wd-meta-val">Boardgame, Illustration &amp; Packaging</span>
+                                    </div>
+                                </div>
+
+                                <div class="wd-carousel-controls" aria-label="Carousel Navigation">
+                                    <span class="wd-slide-counter">01 / 07</span>
+                                    <button type="button" class="wd-nav-btn wd-prev-btn" aria-label="Previous slide"
+                                        title="Previous slide">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M19 12H5" />
+                                            <path d="M12 19l-7-7 7-7" />
+                                        </svg>
+                                    </button>
+                                    <button type="button" class="wd-nav-btn wd-next-btn" aria-label="Next slide"
+                                        title="Next slide">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M5 12h14" />
+                                            <path d="M12 5l7 7-7 7" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="wd-carousel-stage">
+                            <div class="wd-carousel-track" tabindex="0" role="region"
+                                aria-label="MONOPOLI: Tanah Blambangan gallery">
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-monopoli.webp"
+                                        alt="MONOPOLI: Tanah Blambangan — Packaging Box" draggable="false">
+                                </figure>
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-monopoli-2.webp"
+                                        alt="MONOPOLI: Tanah Blambangan — Board Game Set" draggable="false">
+                                </figure>
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-monopoli-3.webp"
+                                        alt="MONOPOLI: Tanah Blambangan — Currency Design" draggable="false">
+                                </figure>
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-monopoli-4.webp"
+                                        alt="MONOPOLI: Tanah Blambangan — Cards & Collateral" draggable="false">
+                                </figure>
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-monopoli-5.webp"
+                                        alt="MONOPOLI: Tanah Blambangan — Property Cards" draggable="false">
+                                </figure>
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-monopoli-6.webp"
+                                        alt="MONOPOLI: Tanah Blambangan — Character & Chance Cards" draggable="false">
+                                </figure>
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-monopoli-7.webp"
+                                        alt="MONOPOLI: Tanah Blambangan — Complete Game Overview" draggable="false">
+                                </figure>
+                            </div>
+                        </div>
+
+                        <div class="wd-footer-bar">
+                            <div class="wd-footer-index">
+                                <span class="wd-index-num">05/</span>
+                                <span class="wd-index-caption">Regional Board Game &amp; Tactile Packaging System</span>
+                            </div>
+                            <div class="wd-footer-right">
+                                <div class="wd-progress-track">
+                                    <div class="wd-progress-fill"></div>
+                                </div>
+                                <span class="wd-drag-cue">DRAG OR CLICK ARROWS →</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- =======================================================
+                         06. BOSCH PRODUCT PHOTOGRAPHY & CATALOG
+                         ======================================================= -->
+                    <article class="wd-project-block" id="wd-project-6" data-wd-project="6">
+                        <div class="wd-overview-grid">
+                            <div class="wd-col-left">
+                                <span class="wd-overview-label"><span class="wd-arrow">→</span> Overview // 06</span>
+                            </div>
+                            <div class="wd-col-right">
+                                <h3 class="wd-project-title">BOSCH Product Photography &amp; Catalog</h3>
+                                <p class="wd-project-desc">
+                                    A product photography and catalog design exploration for <a
+                                        href="https://www.bosch.com" target="_blank" rel="noopener noreferrer"
+                                        class="wd-inline-link">Bosch</a>, capturing products through extreme close-ups,
+                                    in-use moments with models, contextual scenery, and intricate detailing. Articulated
+                                    through a cohesive editorial layout that highlights product functionality,
+                                    craftsmanship, and visual appeal.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="wd-info-grid">
+                            <div class="wd-col-left">
+                                <span class="wd-info-heading">Services &amp; Info</span>
+                            </div>
+                            <div class="wd-col-right wd-info-bar">
+                                <div class="wd-meta-columns">
+                                    <div class="wd-meta-item">
+                                        <span class="wd-meta-label">Year</span>
+                                        <span class="wd-meta-val">2025</span>
+                                    </div>
+                                    <div class="wd-meta-item">
+                                        <span class="wd-meta-label">Client</span>
+                                        <span class="wd-meta-val">BOSCH</span>
+                                    </div>
+                                    <div class="wd-meta-item">
+                                        <span class="wd-meta-label">Art Direction</span>
+                                        <span class="wd-meta-val">Product Photography &amp; Editorial Catalog</span>
+                                    </div>
+                                </div>
+
+                                <div class="wd-carousel-controls" aria-label="Carousel Navigation">
+                                    <span class="wd-slide-counter">01 / 05</span>
+                                    <button type="button" class="wd-nav-btn wd-prev-btn" aria-label="Previous slide"
+                                        title="Previous slide">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M19 12H5" />
+                                            <path d="M12 19l-7-7 7-7" />
+                                        </svg>
+                                    </button>
+                                    <button type="button" class="wd-nav-btn wd-next-btn" aria-label="Next slide"
+                                        title="Next slide">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M5 12h14" />
+                                            <path d="M12 5l7 7-7 7" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="wd-carousel-stage">
+                            <div class="wd-carousel-track" tabindex="0" role="region"
+                                aria-label="BOSCH Product Photography & Catalog gallery">
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-bosch.webp"
+                                        alt="BOSCH Product Photography & Catalog — Cover & Overview" draggable="false">
+                                </figure>
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-bosch-2.webp"
+                                        alt="BOSCH Product Photography — Extreme Close-Up & Detailing"
+                                        draggable="false">
+                                </figure>
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-bosch-3.webp"
+                                        alt="BOSCH Product Photography — In Use with Model" draggable="false">
+                                </figure>
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-bosch-4.webp"
+                                        alt="BOSCH Product Photography — In Scenery" draggable="false">
+                                </figure>
+                                <figure class="wd-slide">
+                                    <img src="assets/image/project-bosch-5.webp"
+                                        alt="BOSCH Product Photography — Editorial Catalog Spread" draggable="false">
+                                </figure>
+                            </div>
+                        </div>
+
+                        <div class="wd-footer-bar">
+                            <div class="wd-footer-index">
+                                <span class="wd-index-num">06/</span>
+                                <span class="wd-index-caption">Product Photography &amp; Editorial Catalog Design</span>
+                            </div>
+                            <div class="wd-footer-right">
+                                <div class="wd-progress-track">
+                                    <div class="wd-progress-fill"></div>
+                                </div>
+                                <span class="wd-drag-cue">DRAG OR CLICK ARROWS →</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Mail: Send a Letter -->
+        <section id="mail" class="page-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-tag">[ 04 ] MAIL</span>
+                    <h2 class="section-title">Write a letter, pick a stamp, and send it to someone.</h2>
+                </div>
+
+                <div class="mail-grid">
+                    <!-- Left: The Letter Card Template -->
+                    <form class="letter-card" id="letterCard" autocomplete="on">
+                        <div class="letter-card-top">
+                            <span class="letter-card-tag">[ POST CARD — WH STUDIO ]</span>
+                            <!-- Stamp slot (shows the selected stamp) -->
+                            <div class="letter-stamp-slot" id="letterStampSlot" title="Selected stamp"></div>
+                        </div>
+
+                        <div class="letter-card-body">
+                            <!-- Message side -->
+                            <div class="letter-message-side">
+                                <div class="letter-dear-row">
+                                    <label for="letterFrom" class="letter-dear-prefix">Dear,</label>
+                                    <input type="text" id="letterFrom" class="letter-input letter-dear-input" placeholder="Recipient name"
+                                        required>
+                                </div>
+
+                                <label for="letterMessage" class="letter-label">MESSAGE</label>
+                                <textarea id="letterMessage" class="letter-textarea" rows="6" maxlength="600"
+                                    placeholder="Write your message here..." required></textarea>
+                                <span class="letter-char-count"><span id="letterCharCount">0</span> / 600</span>
+                            </div>
+
+                            <!-- Address side -->
+                            <div class="letter-address-side">
+                                <label for="letterToName" class="letter-label">FROM</label>
+                                <input type="text" id="letterToName" class="letter-input letter-input-line"
+                                    placeholder="Your name" required>
+
+                                <label for="letterToEmail" class="letter-label">EMAIL ADDRESS</label>
+                                <input type="email" id="letterToEmail" class="letter-input letter-input-line"
+                                    placeholder="name@email.com" required>
+
+                                <div class="letter-postmark">
+                                    <span>JAKARTA</span>
+                                    <span id="letterPostmarkDate">—</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="letter-card-footer">
+                            <span class="letter-status" id="letterStatus" aria-live="polite"></span>
+                            <button type="submit" class="letter-send-btn" id="letterSendBtn">SEND LETTER →</button>
+                        </div>
+                    </form>
+
+                    <!-- Right: Stamp Picker -->
+                    <aside class="stamp-picker">
+                        <h3 class="stamp-picker-title">CHOOSE A STAMP</h3>
+                        <div class="stamp-picker-grid" id="stampPickerGrid" role="radiogroup"
+                            aria-label="Choose a stamp"></div>
+
+                        <h3 class="stamp-picker-title">INK COLOR</h3>
+                        <div class="stamp-ink-row" id="stampInkRow" role="radiogroup" aria-label="Choose ink color">
+                        </div>
+
+                        <label for="stampCustomText" class="stamp-picker-title">STAMP TEXT</label>
+                        <input type="text" id="stampCustomText" class="stamp-custom-input" maxlength="16"
+                            placeholder="WINSTON HANSEL">
+                    </aside>
+                </div>
+
+                <!-- Modal: Letter Export Image Preview & Actions -->
+                <dialog id="letterModal" class="letter-modal">
+                    <div class="letter-modal-box">
+                        <div class="letter-modal-header">
+                            <div>
+                                <span class="letter-modal-tag">[ POST CARD EXPORTED ]</span>
+                                <h3 class="letter-modal-title">Your letter is ready as an image</h3>
+                            </div>
+                            <button type="button" class="letter-modal-close" id="letterModalClose"
+                                aria-label="Close dialog">✕</button>
+                        </div>
+
+                        <div class="letter-modal-preview">
+                            <img id="letterExportImg" alt="Exported Postcard Image" class="letter-export-img">
+                        </div>
+
+                        <div class="letter-modal-actions">
+                            <button type="button" class="btn-modal-action btn-copy-img" id="btnCopyImg">
+                                <span class="btn-icon">📋</span> <span id="copyBtnText">Copy Image to Clipboard</span>
+                            </button>
+                            <button type="button" class="btn-modal-action btn-download-img" id="btnDownloadImg">
+                                <span class="btn-icon">📥</span> Download PNG
+                            </button>
+                            <button type="button" class="btn-modal-action btn-mail-app" id="btnOpenMailApp">
+                                <span class="btn-icon">✉</span> Open Email App
+                            </button>
+                        </div>
+
+                        <div class="letter-modal-footer-note">
+                            <p class="letter-modal-hint" id="letterModalHint">
+                                💡 <strong>Cara kirim ke Email:</strong> Klik <em>"Copy Image"</em> lalu tekan
+                                <kbd>Cmd+V</kbd> / <kbd>Ctrl+V</kbd> di email Anda untuk langsung meng-embed gambar
+                                kartu pos ini di badan email!
+                            </p>
+                        </div>
+                    </div>
+                </dialog>
+            </div>
+        </section>
+        <!-- Section Contact: Centered Tactile Name Card -->
+        <section id="contact" class="page-section contact-section">
+            <div class="section-container contact-container">
+                <div class="section-header contact-header">
+                    <span class="section-tag">[ 05 ] CONTACT</span>
+                    <h2 class="section-title">Let's connect and create something worth looking at.</h2>
+                </div>
+
+                <!-- Centered Name Card Arena (Animated Sway + 3D Click-to-Flip) -->
+                <div class="namecard-stage">
+                    <div class="namecard-wobble-wrap">
+                        <article class="namecard" id="contactNamecard" aria-label="Contact Name Card (Click to flip)"
+                            tabindex="0">
+                            <div class="namecard-flipper">
+                                <!-- FRONT FACE: Contact Details Name Card -->
+                                <div class="namecard-face namecard-front">
+                                    <!-- SVG Ballpoint Pen Ink Filter & Large Handwritten Accent Behind All Card Text -->
+                                    <svg class="nc-pen-filter-svg" width="0" height="0" aria-hidden="true">
+                                        <defs>
+                                            <filter id="ballpointPenInk" x="-10%" y="-10%" width="120%" height="120%">
+                                                <!-- Fine paper grain & uneven ballpoint ink streakiness -->
+                                                <feTurbulence type="fractalNoise" baseFrequency="0.065 0.14" numOctaves="3" seed="11" result="inkNoise" />
+                                                <feColorMatrix type="matrix" in="inkNoise"
+                                                    values="0 0 0 0 0
+                                                            0 0 0 0 0
+                                                            0 0 0 0 0
+                                                            0 0 0 0.72 0.42" result="inkMask" />
+                                                <feComposite in="SourceGraphic" in2="inkMask" operator="in" result="fadedInk" />
+                                                <!-- Subtle dry-pen edge roughness -->
+                                                <feTurbulence type="turbulence" baseFrequency="0.18" numOctaves="2" seed="5" result="edgeGrain" />
+                                                <feDisplacementMap in="fadedInk" in2="edgeGrain" scale="1.35" xChannelSelector="R" yChannelSelector="G" />
+                                            </filter>
+                                        </defs>
+                                    </svg>
+                                    <div class="namecard-pen-accent" aria-hidden="true">
+                                        <span class="nc-pen-line nc-pen-line-1">Get Connected</span>
+                                        <span class="nc-pen-line nc-pen-line-2">With Me!!!</span>
+                                    </div>
+
+                                    <!-- Top Contact Details (Name + Role, Email) -->
+                                    <div class="namecard-top">
+                                        <div class="namecard-identity">
+                                            <h3 class="namecard-name">Winston Hansel</h3>
+                                            <span class="namecard-role">Visual Communication Designer</span>
+                                        </div>
+
+                                        <div class="namecard-row">
+                                            <span class="namecard-label">Email</span>
+                                            <a href="mailto:www.winstonwork@gmail.com"
+                                                class="namecard-value">www.winstonwork@gmail.com</a>
+                                        </div>
+                                    </div>
+
+                                    <!-- Bottom Left Instagram + Right Flip Cue -->
+                                    <div class="namecard-bottom">
+                                        <div class="namecard-row">
+                                            <span class="namecard-label">Instagram</span>
+                                            <a href="https://www.instagram.com/winstonhansell/" target="_blank"
+                                                rel="noopener noreferrer" class="namecard-value">@winstonhansell</a>
+                                        </div>
+                                        <span class="namecard-flip-cue">CLICK TO FLIP ↻</span>
+                                    </div>
+                                </div>
+
+                                <!-- BACK FACE: Flipped "CONTACT ME" Editorial Side -->
+                                <div class="namecard-face namecard-back">
+                                    <span class="nc-corner mark-tl">+</span>
+                                    <span class="nc-corner mark-tr">+</span>
+                                    <span class="nc-corner mark-bl">+</span>
+                                    <span class="nc-corner mark-br">+</span>
+
+                                    <div class="namecard-back-top">
+                                        <span class="nc-back-tag">[ WINSTON HANSEL — BASED IN TANGERANG ]</span>
+                                        <span class="nc-back-status">OPEN FOR COLLABORATION</span>
+                                    </div>
+
+                                    <div class="namecard-back-center">
+                                        <span class="nc-back-eyebrow">HAVE A PROJECT OR IDEA IN MIND?</span>
+                                        <h3 class="nc-back-headline">CONTACT ME.</h3>
+                                        <p class="nc-back-sub">Let's craft meaningful visual identities, editorial
+                                            systems, and creative experiences together.</p>
+                                    </div>
+
+                                    <div class="namecard-back-bottom">
+                                        <span class="nc-back-credit">WINSTON HANSEL // PORTFOLIO 2026</span>
+                                        <span class="namecard-flip-cue nc-cue-light">CLICK TO VIEW DETAILS ↻</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <!-- Floating Action Button: Glass Telephone Contact (Visible only in Work Details section) -->
+    <a href="#contact" class="wd-contact-fab" id="wdContactFab" aria-label="Contact Me" title="Contact Me">
+        <span class="wd-fab-ring" aria-hidden="true"></span>
+        <svg class="wd-fab-phone-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+        </svg>
+        <span class="wd-fab-label">Contact</span>
+    </a>
+
+    <!-- JavaScript Engine -->
+    <script src="assets/js/script.js?v=20261123y"></script>
+</body>
+
+</html>
